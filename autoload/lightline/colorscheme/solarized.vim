@@ -5,24 +5,45 @@
 " Last Change: 2020/04/06 19:22:53.
 " =============================================================================
 
-let s:cuicolors = {
-      \ 'base03': [ '8', '234', 'DarkGray' ],
-      \ 'base02': [ '0', '235', 'Black' ],
-      \ 'base01': [ '10', '239', 'LightGreen' ],
-      \ 'base00': [ '11', '240', 'LightYellow' ],
-      \ 'base0':  [ '12', '244', 'LightBlue' ],
-      \ 'base1':  [ '14', '245', 'LightCyan' ],
-      \ 'base2': [ '7', '187', 'LightGray' ],
-      \ 'base3': [ '15', '230', 'White' ],
-      \ 'yellow': [ '3', '136', 'DarkYellow' ],
-      \ 'orange': [ '9', '166', 'LightRed' ],
-      \ 'red': [ '1', '124', 'DarkRed' ],
-      \ 'magenta': [ '5', '125', 'DarkMagenta' ],
-      \ 'violet': [ '13', '61', 'LightMagenta' ],
-      \ 'blue': [ '4', '33', 'DarkBlue' ],
-      \ 'cyan': [ '6', '37', 'DarkCyan' ],
-      \ 'green': [ '2', '64', 'DarkGreen' ],
-      \ }
+if $TERM == 'linux'
+  let s:cuicolors = {
+        \ 'base03': [ '8', '234', 'DarkGray' ],
+        \ 'base02': [ '0', '235', 'Black' ],
+        \ 'base01': [ '10', '10', 'LightGreen' ],
+        \ 'base00': [ '11', '11', 'LightYellow' ],
+        \ 'base0':  [ '12', '244', 'LightBlue' ],
+        \ 'base1':  [ '14', '245', 'LightCyan' ],
+        \ 'base2': [ '7', '187', 'LightGray' ],
+        \ 'base3': [ '15', '230', 'White' ],
+        \ 'yellow': [ '3', '136', 'DarkYellow' ],
+        \ 'orange': [ '9', '166', 'LightRed' ],
+        \ 'red': [ '1', '124', 'DarkRed' ],
+        \ 'magenta': [ '5', '125', 'DarkMagenta' ],
+        \ 'violet': [ '13', '61', 'LightMagenta' ],
+        \ 'blue': [ '4', '33', 'DarkBlue' ],
+        \ 'cyan': [ '6', '6', 'DarkCyan' ],
+        \ 'green': [ '2', '64', 'DarkGreen' ],
+        \ }
+else
+  let s:cuicolors = {
+        \ 'base03': [ '8', '234', 'DarkGray' ],
+        \ 'base02': [ '0', '235', 'Black' ],
+        \ 'base01': [ '10', '239', 'LightGreen' ],
+        \ 'base00': [ '11', '240', 'LightYellow' ],
+        \ 'base0':  [ '12', '244', 'LightBlue' ],
+        \ 'base1':  [ '14', '245', 'LightCyan' ],
+        \ 'base2': [ '7', '187', 'LightGray' ],
+        \ 'base3': [ '15', '230', 'White' ],
+        \ 'yellow': [ '3', '136', 'DarkYellow' ],
+        \ 'orange': [ '9', '166', 'LightRed' ],
+        \ 'red': [ '1', '124', 'DarkRed' ],
+        \ 'magenta': [ '5', '125', 'DarkMagenta' ],
+        \ 'violet': [ '13', '61', 'LightMagenta' ],
+        \ 'blue': [ '4', '33', 'DarkBlue' ],
+        \ 'cyan': [ '6', '37', 'DarkCyan' ],
+        \ 'green': [ '2', '64', 'DarkGreen' ],
+        \ }
+endif
 
 " The following condition only applies for the console and is the same
 " condition vim-colors-solarized uses to determine which set of colors
@@ -61,15 +82,39 @@ if lightline#colorscheme#background() ==# 'light'
 endif
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [ [ s:base03, s:blue ], [ s:base03, s:base00 ] ]
-let s:p.normal.right = [ [ s:base03, s:base1 ], [ s:base03, s:base00 ] ]
-let s:p.inactive.right = [ [ s:base03, s:base00 ], [ s:base0, s:base02 ] ]
-let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base0, s:base02 ] ]
-let s:p.insert.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
-let s:p.replace.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
-let s:p.visual.left = [ [ s:base03, s:magenta ], [ s:base03, s:base00 ] ]
-let s:p.normal.middle = [ [ s:base1, s:base02 ] ]
-let s:p.inactive.middle = [ [ s:base01, s:base02 ] ]
+if $TERM == 'linux'
+  if lightline#colorscheme#background() ==# 'light'
+    let s:p.normal.left = [ [ s:base03, s:blue ], [ s:base00, s:base1 ] ]
+    let s:p.normal.right = [ [ s:base02, s:base1 ], [ s:base01, s:base02 ] ]
+    let s:p.inactive.right = [ [ s:base01, s:base02 ], [ s:base02, s:base1 ] ]
+    let s:p.inactive.left =  [ [ s:base03, s:base01 ], [ s:base03, s:base01 ] ]
+    let s:p.insert.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
+    let s:p.replace.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
+    let s:p.visual.left = [ [ s:base03, s:magenta ], [ s:base03, s:base00 ] ]
+    let s:p.normal.middle = [ [ s:base03, s:base01 ] ]
+    let s:p.inactive.middle = [ [ s:base03, s:base01 ] ]
+  else
+    let s:p.normal.left = [ [ s:base03, s:blue ], [ s:base03, s:base01 ] ]
+    let s:p.normal.right = [ [ s:base03, s:base01 ], [ s:base03, s:base00 ] ]
+    let s:p.inactive.right = [ [ s:base03, s:base00 ], [ s:base02, s:base01 ] ]
+    let s:p.inactive.left =  [ [ s:base03, s:base1 ], [ s:base03, s:base1 ] ]
+    let s:p.insert.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
+    let s:p.replace.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
+    let s:p.visual.left = [ [ s:base03, s:magenta ], [ s:base03, s:base00 ] ]
+    let s:p.normal.middle = [ [ s:base02, s:cyan ] ]
+    let s:p.inactive.middle = [ [ s:base03, s:base1 ] ]
+  endif
+else
+  let s:p.normal.left = [ [ s:base03, s:blue ], [ s:base03, s:base00 ] ]
+  let s:p.normal.right = [ [ s:base03, s:base1 ], [ s:base03, s:base00 ] ]
+  let s:p.inactive.right = [ [ s:base03, s:base00 ], [ s:base0, s:base02 ] ]
+  let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base0, s:base02 ] ]
+  let s:p.insert.left = [ [ s:base03, s:green ], [ s:base03, s:base00 ] ]
+  let s:p.replace.left = [ [ s:base03, s:red ], [ s:base03, s:base00 ] ]
+  let s:p.visual.left = [ [ s:base03, s:magenta ], [ s:base03, s:base00 ] ]
+  let s:p.normal.middle = [ [ s:base1, s:base02 ] ]
+  let s:p.inactive.middle = [ [ s:base01, s:base02 ] ]
+endif
 let s:p.tabline.left = [ [ s:base03, s:base00 ] ]
 let s:p.tabline.tabsel = [ [ s:base03, s:base1 ] ]
 let s:p.tabline.middle = [ [ s:base0, s:base02 ] ]
